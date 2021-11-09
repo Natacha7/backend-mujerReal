@@ -1,12 +1,13 @@
-const Articulo = require ('../models/articulo.modelo');
+const Articulo = require('../models/articulo.modelo');
 const articulosCtrl = {};
 
-articulosCtrl.getArticulos = async (req, res) => {
+articulosCtrl.getArticulos = async (req, res) =>{
     const articulos = await Articulo.find();
     res.json(articulos);
 }
-articulosCtrl.createArticulo = async (req, res) => {
-    const {nombre, descripcion, precio, stock, linkfoto} = req.body;
+
+articulosCtrl.createArticulo = async (req, res) =>{
+    const {nombre, descripcion, precio, stock, linkfoto } = req.body;
     const newArticulo = new Articulo({
         nombre,
         descripcion,
@@ -18,4 +19,4 @@ articulosCtrl.createArticulo = async (req, res) => {
     res.json('Articulo añadido')
 }
 
-module.export = articulosCtrl;
+module.exports = articulosCtrl;
