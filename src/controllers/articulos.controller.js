@@ -19,4 +19,21 @@ articulosCtrl.createArticulo = async (req, res) =>{
     res.json('Articulo añadido')
 }
 
+articulosCtrl.getArticulo = async(req, res) => {
+    const articulo = await Articulo.findById(req.params.id)
+    res.json(articulo)
+}
+
+articulosCtrl.deleteArticulo = async(req, res) => {
+    await Articulo.findByIdAndDelete(req.params.id)
+    res.json('Articulo eliminado')
+}
+
+articulosCtrl.updateArticulo = async(req,res) => {
+    const{nombre, descripcion, precio, stock} = req.body;
+    await Articulo.findByIdAndUpdate(req.params.id, 
+        {nombre, descripcion, precio, stock})
+    res.json('Articulo actualizado')
+}
+
 module.exports = articulosCtrl;
