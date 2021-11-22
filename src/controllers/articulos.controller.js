@@ -7,13 +7,13 @@ articulosCtrl.getArticulos = async (req, res) =>{
 }
 
 articulosCtrl.createArticulo = async (req, res) =>{
-    const {nombre, descripcion, precio, stock, linkfoto } = req.body;
+    const {titulo, imagen, precio, descripcion, stock } = req.body;
     const newArticulo = new Articulo({
-        nombre,
+        titulo,
+        imagen,
+        precio,     
         descripcion,
-        precio,
-        stock,
-        linkfoto
+        stock
     });
     await newArticulo.save();
     res.json('Articulo añadido')
@@ -30,9 +30,9 @@ articulosCtrl.deleteArticulo = async(req, res) => {
 }
 
 articulosCtrl.updateArticulo = async(req,res) => {
-    const{nombre, descripcion, precio, stock} = req.body;
+    const{titulo, imagen, precio, descripcion, stock} = req.body;
     await Articulo.findByIdAndUpdate(req.params.id, 
-        {nombre, descripcion, precio, stock})
+        {titulo, imagen, precio, descripcion, stock})
     res.json('Articulo actualizado')
 }
 
